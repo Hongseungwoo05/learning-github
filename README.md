@@ -1,82 +1,62 @@
-# Lecture 5: CLI (Command Line Interface) - 2
+# Git Summary Notes (202434681 HongSeungWoo)
 
-## 1. I/O Redirection: Standard Output
+## 1. Version Control and Collaboration
+- Version control systems are essential for software development and document management.
+- **Basic Solution**: Making multiple copies of files.
+- Systematic management is necessary.
 
-- **Default Output**: By default, the output is displayed on the screen.
-- **Redirect Output**: Use `>` after a command to save the output to a file.
-  - Example: `ls > output.txt`
-- **cat command**: Displays the content of a text file on the screen.
+## 2. Changes vs Snapshots
+- **Changes**: Storing differences from the base version.
+- **Snapshots**: Storing the full state of the project at specific points in time.
 
-## 2. I/O Redirection: Append Output
+## 3. Types of Version Control Systems
+### Local Version Control
+- **Description**: All versions stored on the local machine.
+- **Advantages**:
+  - Fast and easy to use.
+  - No network required.
+- **Disadvantages**:
+  - Hard to share changes with others.
+  - Risk of data loss if the local machine fails.
 
-- Use `>>` to append the output to an existing file or create and write to a new file if it doesn't exist.
+### Centralized Version Control
+- **Description**: All versions stored on a central server.
+- **Advantages**:
+  - Easy to manage user permissions.
+  - Simplified collaboration through a central server.
+- **Disadvantages**:
+  - Single point of failure (if the server goes down, no one can access the repository).
+  - Requires a network connection for most operations.
 
-## 3. I/O Redirection: Standard Input
+### Distributed Version Control
+- **Description**: Every user has the full version history on their machine (e.g., Git).
+- **Advantages**:
+  - Users can work offline and have complete history.
+  - Better collaboration and branching capabilities.
+- **Disadvantages**:
+  - Can be complex to learn for new users.
+  - May lead to larger storage requirements on local machines.
 
-- By default, standard input is from the keyboard.
-- Use `<` to redirect input from a file.
-- You can combine `<` and `>` to manage both input and output in a single command.
+## 4. Three States in Git
+- **Modified**: Files that have been changed but not yet added to version control.
+- **Staged**: Files marked to be committed.
+- **Committed**: Files that are safely stored in the Git repository.
 
-## 4. Pipelines `|`
+## 5. Git Configuration (First-time Setup)
+- Configuration is stored at three levels:
+  - **System Level**: Applies to all users on the system.
+  - **Global Level**: Applies to a specific user.
+  - **Local Level**: Specific to a single repository.
+- Set your username and email:
+  - `git config --global user.name "Your Name"`
+  - `git config --global user.email "your.email@example.com"`
 
-- A pipeline (`|`) sends the output of the first command to the input of the next command.
-  - Example: `command1 | command2 | command3`
-
-## 5. Expansion
-
-- Special characters expand their meaning when used in shell commands.
-
-## 6. Tip: Backslash (`\`)
-
-- The backslash can be used to ignore line breaks and continue a long command over multiple lines.
-
-## 7. Permissions
-
-- Linux is a multi-user system.
-- Files and directories have different permissions assigned to the owner, group, and others.
-
-## 8. Changing Permissions
-
-- The `chmod` command is used to change file permissions.
-  - Example: `chmod 600 word.txt` (owner can read/write, group and others have no access)
-
-## 9. Superuser
-
-- A superuser has full system administration privileges.
-- Some commands require superuser privileges, so use `sudo` before the command if you are a superuser.
-  - Example: `sudo apt update`
-- Type `exit` to exit a superuser session.
-
-## 10. Text Editors
-
-- In Linux, you can use CLI-based or GUI-based text editors.
-
-## 11. Shell Script
-
-- You can write and run shell scripts. If there is a problem using nano (on Windows), you can use another text editor (e.g., Notepad).
-
-## 12. Tip: History
-
-- Type `history` to see the previous command history.
-- You can also save the history to a text file.
-  - Example: `history > history.txt`
-
-## 13. wget
-
-- The `wget` command is used to download files from the internet directly to your current directory.
-  - Example: `wget http://example.com/file.txt`
-
-## 14. curl
-
-- `curl` is used for fetching, uploading, and managing data over the internet.
-  - Example: `curl [options] [URL]`
-
-## 15. grep
-
-- `grep` is used to search for text within files.
-  - Example: `grep "search_term" file.txt`
-- **Common Options**:
-  - `-i`: Case-insensitive search
-  - `-v`: Invert match (find lines not containing the search term)
-  - `-n`: Show line numbers along with matching lines
-  - `-r`: Recursive search (searches through all files in a directory and its subdirectories)
+## 6. Git Workflow Example
+1. **Initialize Repository**: use `git init`
+2. **Check Repository Status**: Check the current status of the repository. usr `git status`
+3. **Add Files to Staging**: 
+   - Add specific files. use `git add [file_name]`
+   - Add all files. use `git add .`
+4. **Unstage Files**: Unstage files that have been added to staging. use `git rm --cached [file_name]`
+5. **Ignore Files**: Use a `.gitignore` file to specify files to be ignored.
+6. **Commit Changes**: Commit the changes made. use `git commit -m “commit message”`
